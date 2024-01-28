@@ -1,0 +1,41 @@
+Failure # 1 (occurred at 2024-01-27_21-21-27)
+[36mray::_Inner.train()[39m (pid=23041, ip=192.168.1.209, actor_id=68bbcb9926e13aa7cdcbbd3b01000000, repr=TorchTrainer)
+  File "/home/ppundir/.local/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 400, in train
+    raise skipped from exception_cause(skipped)
+  File "/home/ppundir/.local/lib/python3.10/site-packages/ray/train/_internal/utils.py", line 54, in check_for_failure
+    ray.get(object_ref)
+ray.exceptions.RayTaskError(OutOfMemoryError): [36mray::_RayTrainWorker__execute.get_next()[39m (pid=23072, ip=192.168.1.209, actor_id=df59dac664ad6ff3843373a901000000, repr=<ray.train._internal.worker_group.RayTrainWorker object at 0x70389bc41450>)
+  File "/home/ppundir/.local/lib/python3.10/site-packages/ray/train/_internal/worker_group.py", line 33, in __execute
+    raise skipped from exception_cause(skipped)
+  File "/home/ppundir/.local/lib/python3.10/site-packages/ray/train/_internal/utils.py", line 129, in discard_return_wrapper
+    train_func(*args, **kwargs)
+  File "/tmp/ipykernel_21672/3384315726.py", line 32, in train_loop_per_worker
+  File "/tmp/ipykernel_21672/3531150678.py", line 8, in train_step
+  File "/home/ppundir/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/tmp/ipykernel_21672/1394430966.py", line 13, in forward
+  File "/home/ppundir/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ppundir/.local/lib/python3.10/site-packages/transformers/models/bert/modeling_bert.py", line 1020, in forward
+    encoder_outputs = self.encoder(
+  File "/home/ppundir/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ppundir/.local/lib/python3.10/site-packages/transformers/models/bert/modeling_bert.py", line 610, in forward
+    layer_outputs = layer_module(
+  File "/home/ppundir/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ppundir/.local/lib/python3.10/site-packages/transformers/models/bert/modeling_bert.py", line 495, in forward
+    self_attention_outputs = self.attention(
+  File "/home/ppundir/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ppundir/.local/lib/python3.10/site-packages/transformers/models/bert/modeling_bert.py", line 425, in forward
+    self_outputs = self.self(
+  File "/home/ppundir/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ppundir/.local/lib/python3.10/site-packages/transformers/models/bert/modeling_bert.py", line 306, in forward
+    key_layer = self.transpose_for_scores(self.key(hidden_states))
+  File "/home/ppundir/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ppundir/.local/lib/python3.10/site-packages/torch/nn/modules/linear.py", line 114, in forward
+    return F.linear(input, self.weight, self.bias)
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 28.00 MiB (GPU 0; 2.95 GiB total capacity; 1.97 GiB already allocated; 54.06 MiB free; 2.02 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF

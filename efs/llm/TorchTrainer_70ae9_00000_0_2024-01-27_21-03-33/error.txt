@@ -1,0 +1,24 @@
+Failure # 1 (occurred at 2024-01-27_21-03-51)
+[36mray::_Inner.train()[39m (pid=17581, ip=192.168.1.209, actor_id=fe6d8eda316f88d6540981d001000000, repr=TorchTrainer)
+  File "/home/ppundir/Desktop/Desktop/mahcine-learning-operations/mlops/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 400, in train
+    raise skipped from exception_cause(skipped)
+  File "/home/ppundir/Desktop/Desktop/mahcine-learning-operations/mlops/lib/python3.10/site-packages/ray/train/_internal/utils.py", line 54, in check_for_failure
+    ray.get(object_ref)
+ray.exceptions.RayTaskError(DistBackendError): [36mray::_RayTrainWorker__execute.get_next()[39m (pid=17617, ip=192.168.1.209, actor_id=320e1f99fe6eb3658b89574301000000, repr=<ray.train._internal.worker_group.RayTrainWorker object at 0x77746e6a3610>)
+  File "/home/ppundir/Desktop/Desktop/mahcine-learning-operations/mlops/lib/python3.10/site-packages/ray/train/_internal/worker_group.py", line 33, in __execute
+    raise skipped from exception_cause(skipped)
+  File "/home/ppundir/Desktop/Desktop/mahcine-learning-operations/mlops/lib/python3.10/site-packages/ray/train/_internal/utils.py", line 129, in discard_return_wrapper
+    train_func(*args, **kwargs)
+  File "/tmp/ipykernel_13194/3384315726.py", line 20, in train_loop_per_worker
+  File "/home/ppundir/Desktop/Desktop/mahcine-learning-operations/mlops/lib/python3.10/site-packages/ray/train/torch/train_loop_utils.py", line 107, in prepare_model
+    return get_accelerator(_TorchAccelerator).prepare_model(
+  File "/home/ppundir/Desktop/Desktop/mahcine-learning-operations/mlops/lib/python3.10/site-packages/ray/train/torch/train_loop_utils.py", line 350, in prepare_model
+    model = DataParallel(model, **parallel_strategy_kwargs)
+  File "/home/ppundir/Desktop/Desktop/mahcine-learning-operations/mlops/lib/python3.10/site-packages/torch/nn/parallel/distributed.py", line 674, in __init__
+    _verify_param_shape_across_processes(self.process_group, parameters)
+  File "/home/ppundir/Desktop/Desktop/mahcine-learning-operations/mlops/lib/python3.10/site-packages/torch/distributed/utils.py", line 118, in _verify_param_shape_across_processes
+    return dist._verify_params_across_processes(process_group, tensors, logger)
+torch.distributed.DistBackendError: NCCL error in: ../torch/csrc/distributed/c10d/ProcessGroupNCCL.cpp:1275, internal error, NCCL version 2.14.3
+ncclInternalError: Internal check failed.
+Last error:
+Duplicate GPU detected : rank 2 and rank 0 both on CUDA device 1000

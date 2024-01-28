@@ -1,0 +1,20 @@
+Failure # 1 (occurred at 2024-01-27_21-20-44)
+[36mray::_Inner.train()[39m (pid=22618, ip=192.168.1.209, actor_id=3d14da36136c850805a4dfe901000000, repr=TorchTrainer)
+  File "/home/ppundir/Desktop/Desktop/mahcine-learning-operations/mlops/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 400, in train
+    raise skipped from exception_cause(skipped)
+  File "/home/ppundir/Desktop/Desktop/mahcine-learning-operations/mlops/lib/python3.10/site-packages/ray/train/_internal/utils.py", line 54, in check_for_failure
+    ray.get(object_ref)
+ray.exceptions.OutOfMemoryError: Task was killed due to the node running low on memory.
+Memory on the node (IP: 192.168.1.209, ID: 024acf52fe00ea6d3ac4b124338ac85c40ed4fabd41ed13840e83852) where the task (actor ID: cd2a39092c20399d3baa7cbf01000000, name=RayTrainWorker.__init__, pid=22663, memory used=1.70GB) was running was 13.45GB / 13.59GB (0.989998), which exceeds the memory usage threshold of 0.95. Ray killed this worker (ID: ae31aa5879f9aabaa0abe815486290072f70eb99823741dbc6c12767) because it was the most recently scheduled task; to see more information about memory usage on this node, use `ray logs raylet.out -ip 192.168.1.209`. To see the logs of the worker, use `ray logs worker-ae31aa5879f9aabaa0abe815486290072f70eb99823741dbc6c12767*out -ip 192.168.1.209. Top 10 memory users:
+PID	MEM(GB)	COMMAND
+22664	1.71	ray::_RayTrainWorker__execute.get_next
+22663	1.70	ray::_RayTrainWorker__execute.get_next
+22661	1.67	ray::_RayTrainWorker__execute.get_next
+22662	1.61	ray::_RayTrainWorker__execute.get_next
+20391	0.30	/home/ppundir/Desktop/Desktop/mahcine-learning-operations/mlops/bin/python -m ipykernel_launcher --f...
+10163	0.22	/usr/lib/firefox/firefox-bin -contentproc -childID 30 -isForBrowser -prefsLen 32320 -prefMapSize 236...
+3369	0.15	firefox
+8711	0.12	/usr/share/code/code --type=renderer --crashpad-handler-pid=8676 --enable-crash-reporter=6f230fa1-d6...
+4974	0.11	/usr/lib/firefox/firefox-bin -contentproc -childID 15 -isForBrowser -prefsLen 32134 -prefMapSize 236...
+21672	0.11	/bin/python3 -m ipykernel_launcher --f=/home/ppundir/.local/share/jupyter/runtime/kernel-v2-19459yjY...
+Refer to the documentation on how to address the out of memory issue: https://docs.ray.io/en/latest/ray-core/scheduling/ray-oom-prevention.html. Consider provisioning more memory on this node or reducing task parallelism by requesting more CPUs per task. Set max_restarts and max_task_retries to enable retry when the task crashes due to OOM. To adjust the kill threshold, set the environment variable `RAY_memory_usage_threshold` when starting Ray. To disable worker killing, set the environment variable `RAY_memory_monitor_refresh_ms` to zero.

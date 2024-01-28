@@ -1,0 +1,20 @@
+Failure # 1 (occurred at 2024-01-25_22-47-17)
+[36mray::_Inner.train()[39m (pid=9396, ip=192.168.1.208, actor_id=47885e1e6c225ee248bb3b5601000000, repr=TorchTrainer)
+  File "/home/ppundir/Desktop/Desktop/mahcine-learning-operations/mlops/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 400, in train
+    raise skipped from exception_cause(skipped)
+  File "/home/ppundir/Desktop/Desktop/mahcine-learning-operations/mlops/lib/python3.10/site-packages/ray/train/_internal/utils.py", line 54, in check_for_failure
+    ray.get(object_ref)
+ray.exceptions.OutOfMemoryError: Task was killed due to the node running low on memory.
+Memory on the node (IP: 192.168.1.208, ID: 40433421e2fe23bd9e6db11dda8d0acb952b6e281f41f665b7eb004d) where the task (actor ID: 7b9f7b637437a31c72a4b5af01000000, name=RayTrainWorker.__init__, pid=9458, memory used=1.57GB) was running was 13.42GB / 13.59GB (0.987884), which exceeds the memory usage threshold of 0.95. Ray killed this worker (ID: bf71a66acb5facd27f6fb1c698ab9d04215e730cc09aec9a1cdb5c0f) because it was the most recently scheduled task; to see more information about memory usage on this node, use `ray logs raylet.out -ip 192.168.1.208`. To see the logs of the worker, use `ray logs worker-bf71a66acb5facd27f6fb1c698ab9d04215e730cc09aec9a1cdb5c0f*out -ip 192.168.1.208. Top 10 memory users:
+PID	MEM(GB)	COMMAND
+9455	1.64	ray::_RayTrainWorker__execute.get_next
+9457	1.62	ray::_RayTrainWorker__execute.get_next
+9458	1.57	ray::_RayTrainWorker__execute.get_next
+9456	1.56	ray::_RayTrainWorker__execute.get_next
+5468	1.08	/home/ppundir/Desktop/Desktop/mahcine-learning-operations/mlops/bin/python -m ipykernel_launcher --f...
+5473	0.20	/usr/share/code/code --ms-enable-electron-run-as-node /home/ppundir/.vscode/extensions/ms-python.vsc...
+3319	0.18	firefox
+5344	0.18	/usr/share/code/code --type=renderer --crashpad-handler-pid=3982 --enable-crash-reporter=6f230fa1-d6...
+4200	0.17	/bin/python3 -m ipykernel_launcher --f=/home/ppundir/.local/share/jupyter/runtime/kernel-v2-4062i8Go...
+4266	0.16	/usr/share/code/code --ms-enable-electron-run-as-node /home/ppundir/.vscode/extensions/ms-python.vsc...
+Refer to the documentation on how to address the out of memory issue: https://docs.ray.io/en/latest/ray-core/scheduling/ray-oom-prevention.html. Consider provisioning more memory on this node or reducing task parallelism by requesting more CPUs per task. Set max_restarts and max_task_retries to enable retry when the task crashes due to OOM. To adjust the kill threshold, set the environment variable `RAY_memory_usage_threshold` when starting Ray. To disable worker killing, set the environment variable `RAY_memory_monitor_refresh_ms` to zero.

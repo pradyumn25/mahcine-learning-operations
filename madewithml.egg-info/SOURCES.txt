@@ -1,0 +1,6 @@
+README.md
+madewithml/setup.py
+madewithml.egg-info/PKG-INFO
+madewithml.egg-info/SOURCES.txt
+madewithml.egg-info/dependency_links.txt
+madewithml.egg-info/top_level.txt

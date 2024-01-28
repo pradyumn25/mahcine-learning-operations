@@ -1,0 +1,33 @@
+Failure # 1 (occurred at 2024-01-27_21-11-00)
+[36mray::_Inner.train()[39m (pid=19212, ip=192.168.1.209, actor_id=0c5ae4740fca14d45d84e6e101000000, repr=TorchTrainer)
+  File "/home/ppundir/Desktop/Desktop/mahcine-learning-operations/mlops/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 400, in train
+    raise skipped from exception_cause(skipped)
+  File "/home/ppundir/Desktop/Desktop/mahcine-learning-operations/mlops/lib/python3.10/site-packages/ray/air/_internal/util.py", line 91, in run
+    self._ret = self._target(*self._args, **self._kwargs)
+  File "/home/ppundir/Desktop/Desktop/mahcine-learning-operations/mlops/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 383, in <lambda>
+    training_func=lambda: self._trainable_func(self.config),
+  File "/home/ppundir/Desktop/Desktop/mahcine-learning-operations/mlops/lib/python3.10/site-packages/ray/train/base_trainer.py", line 856, in _trainable_func
+    super()._trainable_func(self._merged_config)
+  File "/home/ppundir/Desktop/Desktop/mahcine-learning-operations/mlops/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 822, in _trainable_func
+    output = fn()
+  File "/home/ppundir/Desktop/Desktop/mahcine-learning-operations/mlops/lib/python3.10/site-packages/ray/train/base_trainer.py", line 766, in train_func
+    trainer.training_loop()
+  File "/home/ppundir/Desktop/Desktop/mahcine-learning-operations/mlops/lib/python3.10/site-packages/ray/train/data_parallel_trainer.py", line 543, in training_loop
+    backend_executor.start(initialization_hook=clear_lazy_checkpoint_marker)
+  File "/home/ppundir/Desktop/Desktop/mahcine-learning-operations/mlops/lib/python3.10/site-packages/ray/train/_internal/backend_executor.py", line 115, in start
+    self.worker_group = WorkerGroup(
+  File "/home/ppundir/Desktop/Desktop/mahcine-learning-operations/mlops/lib/python3.10/site-packages/ray/train/_internal/worker_group.py", line 192, in __init__
+    self.start()
+  File "/home/ppundir/Desktop/Desktop/mahcine-learning-operations/mlops/lib/python3.10/site-packages/ray/train/_internal/worker_group.py", line 204, in start
+    self.add_workers(self.num_workers)
+  File "/home/ppundir/Desktop/Desktop/mahcine-learning-operations/mlops/lib/python3.10/site-packages/ray/train/_internal/worker_group.py", line 348, in add_workers
+    actor = self._remote_cls.options(
+  File "/home/ppundir/Desktop/Desktop/mahcine-learning-operations/mlops/lib/python3.10/site-packages/ray/actor.py", line 646, in remote
+    return actor_cls._remote(args=args, kwargs=kwargs, **updated_options)
+  File "/home/ppundir/Desktop/Desktop/mahcine-learning-operations/mlops/lib/python3.10/site-packages/ray/actor.py", line 911, in _remote
+    placement_group = _configure_placement_group_based_on_context(
+  File "/home/ppundir/Desktop/Desktop/mahcine-learning-operations/mlops/lib/python3.10/site-packages/ray/util/placement_group.py", line 490, in _configure_placement_group_based_on_context
+    _validate_resource_shape(
+  File "/home/ppundir/Desktop/Desktop/mahcine-learning-operations/mlops/lib/python3.10/site-packages/ray/util/placement_group.py", line 405, in _validate_resource_shape
+    raise ValueError(
+ValueError: Cannot schedule RayTrainWorker with the placement group because the resource request {'CPU': 1, 'GPU': 1} cannot fit into any bundles for the placement group, [{'CPU': 1.0}, {'CPU': 1.0}, {'CPU': 1.0}, {'CPU': 1.0}, {'CPU': 1.0}].
